@@ -3,6 +3,7 @@ import sqlite3
 
 DB_PATH = Path(__file__).with_name("voloveteer.db")
 
+
 def get_db():
     connection = sqlite3.connect(DB_PATH)
     connection.row_factory = sqlite3.Row
@@ -17,7 +18,7 @@ def init_db():
                 title TEXT NOT NULL,
                 category TEXT NOT NULL,
                 description TEXT NOT NULL,
-                location TEXT NOT NOT NULL,
+                location TEXT NOT NULL,
                 date_text TEXT NOT NULL,
                 organizer TEXT NOT NULL,
                 contact_email TEXT,
