@@ -31,7 +31,7 @@ def init_db():
                 organizer TEXT NOT NULL,
                 contact_email TEXT,
                 registration_url TEXT,
-                active INTEGER NOT NOT NULL DEFAULT 1
+                active INTEGER NOT NULL DEFAULT 1
             );
 
             CREATE TABLE IF NOT EXISTS feedback (
@@ -89,7 +89,7 @@ def get_feedback_stats(event_id):
 def find_event(event_id):
     with get_db() as connection:
         return connection.execute(
-            "SELECT * FROM opportunities WHERE id = ? AND active = 1", (event_id,) 
+            "SELECT * FROM opportunities WHERE id = ? AND active = 1", (event_id,)
         ).fetchone()
 
 
