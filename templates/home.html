@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Welcome · VoLoveTeer{% endblock %}
+{% block content %}
+<h1>Volunteer for what you care about.</h1>
+<p>VoLoveTeer helps students explore community opportunities that fit their interests.</p>
+<p><a class="button" href="{{ url_for('survey') }}">Choose my interests</a></p>
+<p><a href="{{ url_for('opportunities') }}">Browse all opportunities</a></p>
+{% endblock %}

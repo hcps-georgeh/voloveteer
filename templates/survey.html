@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}My interests · VoLoveTeer{% endblock %}
+{% block content %}
+<h1>What do you enjoy?</h1>
+<p>Choose any interests you’d like to explore. You can change these later.</p>
+<form method="post">
+  {% for interest in interests %}
+  <p><label><input type="checkbox" name="interests" value="{{ interest }}" {% if interest in selected %}checked{% endif %}> {{ interest }}</label></p>
+  {% endfor %}
+  <button type="submit">See my matches</button>
+</form>
+{% endblock %}

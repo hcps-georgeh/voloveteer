@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#256b4b">
+  <title>{% block title %}VoLoveTeer{% endblock %}</title>
+  <style>
+    :root { --ink:#20352d; --green:#256b4b; --mint:#eaf5ee; --cream:#fffdf7; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--cream); color:var(--ink); font:16px/1.55 system-ui,sans-serif; }
+    header { background:var(--mint); padding:1rem max(1rem,calc((100% - 900px)/2)); }
+    nav { display:flex; gap:1rem; flex-wrap:wrap; }
+    nav a { color:var(--green); font-weight:650; }
+    main { max-width:900px; margin:2rem auto; padding:0 1rem; }
+    h1,h2 { line-height:1.2; }
+    .card { border:1px solid #d6e4da; border-radius:12px; padding:1rem; margin:1rem 0; background:white; }
+    .tag { display:inline-block; background:var(--mint); border-radius:20px; padding:.2rem .7rem; font-size:.9rem; }
+    button,.button { display:inline-block; border:0; border-radius:8px; padding:.65rem 1rem; background:var(--green); color:white; text-decoration:none; font:inherit; cursor:pointer; }
+    .notice { padding:.7rem; background:#fff3cd; border-radius:8px; }
+    .muted { color:#53645b; }
+    footer { max-width:900px; margin:3rem auto; padding:0 1rem; color:#53645b; }
+  </style>
+</head>
+<body>
+  <header><nav><a href="{{ url_for('home') }}">VoLoveTeer</a><a href="{{ url_for('survey') }}">My interests</a><a href="{{ url_for('opportunities') }}">Opportunities</a></nav></header>
+  <main>
+    {% for message in get_flashed_messages() %}<p class="notice">{{ message }}</p>{% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer><p>Find a way to help that feels meaningful to you.</p><p class="muted">Demo only: confirm event details and age requirements with organizers.</p></footer>
+</body>
+</html>

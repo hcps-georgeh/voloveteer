@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Opportunities · VoLoveTeer{% endblock %}
+{% block content %}
+<h1>Volunteer opportunities</h1>
+{% if interests %}
+<p>Matches for: {% for item in interests %}<span class="tag">{{ item }}</span> {% endfor %} <a href="{{ url_for('survey') }}">Edit interests</a></p>
+{% else %}
+<p>Take the <a href="{{ url_for('survey') }}">interest survey</a> to see personalized matches.</p>
+{% endif %}
+{% for item in events %}
+{% set event = item.row %}
+<section class="card">
+  {% if item.matched %}<span class="tag">Matches your interests</span>{% endif %}
+  <h2>{{ event.title }}</h2>
+  <p>{{ event.description }}</p>
+  <p><strong>{{ event.category }}</strong> · {{ event.location }} · {{ event.date_text }}</p>
+  <p>Organizer: {{ event.organizer }}</p>
+  {% if event.contact_email %}<p>Contact: <a href="mailto:{{ event.contact_email }}">{{ event.contact_email }}</a></p>{% endif %}
+  {% if event.registration_url %}<p><a href="{{ event.registration_url }}">Organizer registration</a></p>{% endif %}
+  {% if item.rating %}<p>Student feedback: {{ item.rating }}/5 ({{ item.rating_count }} rating{{ '' if item.rating_count == 1 else 's' }})</p>{% else %}<p class="muted">No student ratings yet.</p>{% endif %}
+  {% if event.id in registered %}<p><strong>Saved in this browser.</strong></p>{% else %}
+  <form method="post" action="{{ url_for('sign_up', event_id=event.id) }}"><button type="submit">Save this opportunity</button></form>
+  {% endif %}
+  <p><a href="{{ url_for('feedback', event_id=event.id) }}">Leave feedback</a></p>
+</section>
+{% endfor %}
+{% endblock %}
